@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosStar } from "react-icons/io";
 import Desc from "./desc";
 import SizeDetails from "./SizeDetails";
 import Counter from "./counter";
 import Reviews from "./reviews";
 import Shoppingcard from "./shoppingcard";
+import Addcart from "./addcart";
+
 
 const Productdetails = () => {
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   const shoppingItems = [
     {
       id: 1,
@@ -32,7 +42,7 @@ const Productdetails = () => {
   ];
 
   return (
-    <div className="pt-8">
+    <div className="pt-8 relative">
       <div className="grid grid-cols-[60%_40%]">
         <div className="flex gap-2 ">
           <div className="flex-grow ">
@@ -65,10 +75,11 @@ const Productdetails = () => {
           </p>
 
           <div className="flex gap-3 items-center justify-center mb-8">
-            <button className="py-[13px] px-[80px] gap-[10] font-bold text-[#FFFF] text-center bg-black">
+            <button className="py-[13px] px-[80px] gap-[10] font-bold text-nowrap text-[#FFFF] bg-black">
               Add to Cart $200
             </button>
-            <button className="py-[13px] px-[42px] border-[0.7] bg-white  gap-[10] text-center">
+           
+            <button className="py-[13px] px-[42px] border-[0.7] bg-white  text-nowrap  gap-[10]">
               Buy Now $200
             </button>
           </div>

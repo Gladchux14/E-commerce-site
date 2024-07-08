@@ -5,7 +5,7 @@ import Counter from '../components/counter';
 
 const Shop = () => {
   return (
-    <div className='py-12 border border-solid border-red-600'>
+    <div className='py-12 '>
         <div className='py-6 flex flex-col gap-5'>
         <p className='font-bold text-[32px] line-height-[43.2px] '>Explore Classy Backpacks</p>
         <p className='text-lg font-normal mb-4'>Carry the weight of the world in comfort</p>

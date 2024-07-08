@@ -1,22 +1,26 @@
-import React from 'react'
-import Header from '../components/header'
-import { Outlet } from 'react-router-dom'
-import Footer from '../components/footer'
+import React from "react";
+import { useLocation } from "react-router-dom";
+import Header from "../components/header";
+import { Outlet } from "react-router-dom";
+import Footer from "../components/footer";
 
-const Rootpage = () => {
+const Rootpage = ({ children }) => {
+  const location = useLocation();
+
   return (
     <div>
-    <Header/>
+      {!location.pathname.includes("/checkout") && <Header />}
 
-    <main className='bg-[#F7F7F7] border border-solid border-red-600'>
-        <div className='container w-[100%] max-w-[90%] mx-auto'>
+      <main className="bg-[#F7F7F7] px-6 ">
+        {children}
 
-        <Outlet/>
+        <div className="container w-[100%] max-w-[100%] mx-auto">
+          <Outlet />
         </div>
-    </main>
-    <Footer/>
+      </main>
+      {!location.pathname.includes("/checkout") && <Footer />}
     </div>
-  )
-}
+  );
+};
 
-export default Rootpage
+export default Rootpage;
