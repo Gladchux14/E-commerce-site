@@ -4,14 +4,14 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="bg-customPurity  h-[514px] flex flex-col justify-center px-5">
-        <div className="flex gap-10 justify-between container w-[100%] max-w-[90%] mx-auto">
-      <div className="flex items-end gap-3 ">
+      <div className="flex gap-10 items-center md:justify-between flex-col md:flex-row lg:flex-row container w-[100%] max-w-[90%] mx-auto">
+      <div className="flex order-1 md:order-none md:flex-col lg:items-end lg:flex-row gap-4  justify-center" >
         <p>Shop All</p>
         <p>Back To School</p>
         <p>About</p>
       </div>
       <div className="flex flex-col justify-end">
-        <div className="w-[435px] h-[133px] mb-6">
+        <div className="w-full h-[133px] mb-6">
         <img src={"/images/footerlogo.svg"} alt="footer-logo" className="w-full " />
         </div>
         <div className="flex items-center justify-center gap-5 mb-5 ">
@@ -27,7 +27,7 @@ const Footer = () => {
         <p className=" text-center text-xs">Terms & Privacy.2024 Aurelius.All rights reserved</p>
       </div>
 
-      <div className="flex items-end gap-8">
+      <div className="flex order-2 md:flex-col md:order-none lg:items-end lg:flex-row gap-8  justify-center">
         <p>Instagram</p>
         <p>Tik tok</p>
         <p>Contact</p>

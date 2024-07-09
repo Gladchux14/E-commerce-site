@@ -43,13 +43,13 @@ const Productdetails = () => {
 
   return (
     <div className="pt-8 relative">
-      <div className="grid grid-cols-[60%_40%]">
-        <div className="flex gap-2 ">
+      <div className="lg:grid lg:grid-cols-[60%_40%] flex flex-col">
+        <div className="flex gap-2  flex-col md:flex-row">
           <div className="flex-grow ">
             <img src="/images/bag1.png" alt="bag-img" className="w-full" />
-          </div>
+          </div>ll
 
-          <div className="flex flex-col w-[95px] gap-2 ">
+          <div className="flex md:flex-col md:w-[95px] gap-2 flex-wrap flex-row mt-5 mb-40">
             <img src="/images/img1.png" alt="img" />
             <img src="/images/img2.svg" alt="img" />
             <img src="/images/img3.svg" alt="img" />
@@ -59,7 +59,7 @@ const Productdetails = () => {
         </div>
 
         <div className="px-10">
-          <p className="text-xl mb-4 font-light text-[#525151]  ">
+          <p className="text-xl mb-4 font-light text-[#525151] md:pb-7 ">
             Shop / Heritage
           </p>
           <p className="text-4xl mb-4 ">Herschel Heritage Backpack | XL</p>
@@ -70,16 +70,16 @@ const Productdetails = () => {
             <span className="underline">Reviews</span>
           </div>
           <hr />
-          <p className="mt-3 mb-8 pb-3 text-lg font-medium">
-            Available Color: Black 7 Brown{" "}
+          <p className="mt-3 mb-8 pb-3 text-lg text-customMarsland font-medium">
+            Available Color: Black 7 Brown
           </p>
 
-          <div className="flex gap-3 items-center justify-center mb-8">
-            <button className="py-[13px] px-[80px] gap-[10] font-bold text-nowrap text-[#FFFF] bg-black">
+          <div className="flex gap-4  mb-8">
+            <button className="p-[13px] w-full gap-[10] font-bold text-nowrap text-[#FFFF] bg-black">
               Add to Cart $200
             </button>
            
-            <button className="py-[13px] px-[42px] border-[0.7] bg-white  text-nowrap  gap-[10]">
+            <button className="p-[13px] w-full border-[0.7] bg-white  text-nowrap  gap-[10]">
               Buy Now $200
             </button>
           </div>
@@ -98,13 +98,13 @@ const Productdetails = () => {
             <p>Returns</p>
           </div>
           <p className="text-[#525151] flex justify-start text-base ">
-            Shipment takes between 2-3days of orders{" "}
+            Shipment takes between 2-3days of orders
           </p>
         </div>
       </div>
 
       <div className="mt-40">
-        <p className="font-medium text-[32px] pb-6">Things you might like</p>
+        <p className="font-medium text-[32px] pb-6 md:text-[24px]">Things you might like</p>
         <div className="grid grid-cols-3">
           {shoppingItems.map((item) => (
             <Shoppingcard
@@ -116,8 +116,8 @@ const Productdetails = () => {
             />
           ))}
         </div>
-        <div className="flex items-center justify-end">
-        <Counter />
+        <div className="flex items-center w-full justify-end">
+        <Counter details={true} />
         </div>
       </div>
       <Reviews />

@@ -11,10 +11,10 @@ const Rootpage = ({ children }) => {
     <div>
       {!location.pathname.includes("/checkout") && <Header />}
 
-      <main className="bg-[#F7F7F7] px-6 ">
+      <main className="bg-[#F7F7F7] px-6">
         {children}
 
-        <div className="container w-[100%] max-w-[100%] mx-auto">
+        <div className="container w-[100%] max-w-[90%] mx-auto ">
           <Outlet />
         </div>
       </main>

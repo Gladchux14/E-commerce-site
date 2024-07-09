@@ -11,8 +11,8 @@ const SizeDetails = () => {
 
 
   return (
-    <div className='relative'>
-    <div className="flex items-center justify-between">
+    <div className='relative md:mb-4 mt-3'>
+    <div className="flex text-customMarsland items-center justify-between">
       <p>Size & Details</p>
       <button onClick={toggleDropdown} className=" px-4 py-2 rounded">
          <span className={`flex-grow ml-2 transform ${isOpen ? 'rotate-180' : ''}`}> <IoIosArrowForward /></span>
@@ -21,8 +21,8 @@ const SizeDetails = () => {
       {isOpen && (
         <ol className="absolute grid  mt-2 w-48 p-2 rounded text-nowrap gap-3 text-[#525151]">
           <li className="block ">Dimension: 6.75"(H) x 2.00"(W)</li>
-          <li className="block ">Ecosystem Liner made from 100% recycled post-consumer water bottles</li>
-          <li className="block ">Tonal stripe Ecosystem Liner made from 100%  recycled post-consumer </li>
+          <li className="block ">Ecosystem™ Liner made from 100% recycled post-consumer water bottles</li>
+          <li className="block ">Tonal stripe Ecosystem™ Liner made from 100%  recycled post-consumer </li>
           <li className="block ">Zippered closure wth pruisk cord pull</li>
           <li className="block  ">Smooth webbing strap adjusts for comfortable hands-free journeys</li>
           <li className="block  ">Front sleeve pocket</li>

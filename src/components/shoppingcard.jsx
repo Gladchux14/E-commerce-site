@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
-const Shoppingcard = ({ image, text, rating, price }) => {
+const Shoppingcard = ({ image, text, rating, price,length,index }) => {
   return (
-    <Link to ='shop' className="p-2">
-      <div className=" shadow-md rounded-lg overflow-hidden  items-center justify-center">
+    <Link to ='shop' className={`p-2 ${length && index && length== index && "hidden"} lg:block`}>
+      <div className=" rounded-lg overflow-hidden  items-center justify-center">
         <img className="w-full h-50% object-cover object-center" src={image} alt={image} />
         <div className="p-4 flex flex-col gap-[14px]">
           <h2 className="text-lg ">{text}</h2>
@@ -28,3 +28,7 @@ const Shoppingcard = ({ image, text, rating, price }) => {
 };
 
 export default Shoppingcard;
+
+
+
+

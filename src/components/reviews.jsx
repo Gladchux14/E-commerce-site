@@ -4,12 +4,12 @@ import { IoPersonCircle } from "react-icons/io5";
 
 const Reviews = () => {
   return (
-    <div>
+    <div className="pb-20">
       <p className="font-bold text-4xl text-[#11111]">Reviews</p>
       <p className="font-normal text-lg text-[#525151] mb-14 mt-5">Read what people has to say about this product</p>
       
-      <div className="flex items-center justify-center text-start gap-6">
-      <div className=" flex flex-col gap-2">
+      <div className="flex flex-col gap-6 md:flex-row">
+      <div className=" flex flex-col gap-2 md:flex">
         <div className="text-customTiaMaris flex gap-2 mb-4">
           <IoIosStar />
           <IoIosStar />

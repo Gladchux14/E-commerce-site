@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { CgCloseR } from "react-icons/cg";
 import Cart from './cart';
+import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Addcart = ({ isOpen, toggleSidebar, toggleNestedCartDropdown }) => {
 
@@ -11,11 +13,12 @@ const Addcart = ({ isOpen, toggleSidebar, toggleNestedCartDropdown }) => {
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="p-4">
+        <div className="p-4 md:">
           <div className=" bg-customBlazeHaze px-6 py-3">
             <div className="flex items-center justify-between mb-5 mt-2">
-              <p className="font-medium text-2xl text-customMarsland">
-                Added to Cart{" "}
+              
+          <p className=" font-medium text-2xl text-customMarsland ">
+                Added to Cart
               </p>
               <button
                 onClick={toggleSidebar}

@@ -1,35 +1,45 @@
 import React from "react";
 import logo from "../assets/images/logo.svg";
-
-
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   return (
     <div className="w-full">
-      <div className="h-20 border-b flex items-center justify-start border-customMarsland cursor-pointer w-full">
-        <img
-          src={logo}
-          alt="logo"
-          className="flex items-center justify-center"
-        />
-      </div>
+      <Link to="/">
+        <div className="h-20 border-b flex items-center justify-start border-customMarsland cursor-pointer w-full">
+          <img
+            src={logo}
+            alt="logo"
+            className="flex items-center justify-center"
+          />
+        </div>
+      </Link>
 
-      <div className="mt-10 grid grid-cols-[60%,40%] gap-4 p-10 ">
-        <div className="flex">
+      <div className="mt-10  gap-4 p-10 md:flex  sm:flex flex-col lg:grid lg:grid-cols-[60%_35%] lg:gap-8 ">
+        <div className="">
           <div className=" flex flex-col ">
             <p className="text-2xl pb-5 text-customMarsland ">
               Express checkout
             </p>
 
-            <div className="flex items-center justify-center gap-4 mb-14">
-              <button>
-                <img src="../images/PayPal.svg" alt="paypal logo" />
+            <div className="flex gap-4 mb-14 ">
+              <button className="flex gap-2 justify-center items-center bg-[#FFC43A] p-[13px] w-full  ">
+                Buy with{" "}
+                <span>
+                  <img src="../images/paypalicon.svg" alt="paypal logo" />{" "}
+                </span>
               </button>
-              <button>
-                <img src="../images/apple pay.svg" alt="applepay logo" />
+              <button className="flex gap-2 bg-[#000]  justify-center items-center  p-[13px]  text-[#fff]  w-full ">
+                Buy with{" "}
+                <span>
+                  <img src="../images/applepayicon.svg" alt="paypal logo" />{" "}
+                </span>
               </button>
-              <button>
-                <img src="../images/google pay.svg" alt="googlepay logo" />
+              <button className="flex gap-2 bg-[#000]  justify-center items-center  text-[#fff] p-[13px]  w-full  ">
+                Buy with{" "}
+                <span>
+                  <img src="../images/googlepayicon.svg" alt="paypal logo" />{" "}
+                </span>
               </button>
             </div>
             <div className="flex items-center justify-between mb-2">
@@ -82,14 +92,18 @@ const Checkout = () => {
                 id="locations"
                 className="w-[100%] py-3 mb-5 text-[#828282]"
               >
-                <option value="" disabled selected>United States</option>
+                <option value="" disabled selected>
+                  United States
+                </option>
               </select>
               <select
                 name="location"
                 id="locations"
                 className="w-[100%] py-3 mb-5 text-[#828282]"
               >
-                <option value="" disabled selected>Georgia</option>
+                <option value="" disabled selected>
+                  Georgia
+                </option>
               </select>
             </div>
             <div className="flex gap-4 mb-5 w-[100%]">
@@ -105,30 +119,29 @@ const Checkout = () => {
               />
             </div>
 
-           <div className="flex items-center justify-between">
-           <p className="mb-2 flex  text-base">
-              Delivery Options
-            </p>
-             <p className="text-customTiaMaris font-medium">edit choice</p>
-           </div>
-            
+            <div className="flex items-center justify-between ">
+              <p className="mb-2 flex  text-base">Delivery Options</p>
+              <p className="text-customTiaMaris font-medium">edit choice</p>
+            </div>
+
             <div className="flex items-center justify-center gap-10 text-base">
-              <div className="border-2 px-40 py-4 w-[100%]  border-customTiaMaris text-nowrap items-center ">
+              <div className="border-2  p-4 w-[100%]  border-customTiaMaris text-nowrap items-center ">
                 <p className="font-bold">Home delivery</p>
                 <p className="text-[#525151]">takes 3-5 business day</p>
               </div>
-              <div className="border border-solid px-44 py-4 w-[100%]  text-nowrap">
+              <div className="border border-solid p-4 w-[100%]  text-nowrap">
                 <p className="font-bold">In-store pickup</p>
                 <p className="text-[#525151]">pick from store location</p>
               </div>
             </div>
 
-            <button className="bg-customMarsland text-customBlazeHaze text-base font-bold px-[13px] py-[10px] mt-10">Submit </button>
+            <button className="bg-customMarsland text-customBlazeHaze text-base font-bold py-[10px] mt-10">
+              Submit{" "}
+            </button>
           </div>
-         
         </div>
 
-        <div className=" flex flex-col w-full">
+        <div className=" flex flex-col w-full md:mt-10">
           <p className="text-2xl pb-5 text-customMarsland text-nowrap justify-start ">
             Order Summary
           </p>
@@ -172,8 +185,7 @@ const Checkout = () => {
           <hr />
           <p className="text-3xl mb-10 pt-5">Payment options</p>
           <div className="flex mb-7 gap-2 ">
-
-            <img src="../images/Radio.svg" alt="radio" className="mb-7" />             
+            <img src="../images/Radio.svg" alt="radio" className="mb-7" />
 
             <span>
               <p className="text-lg">Direct bank transfer</p>
@@ -184,7 +196,7 @@ const Checkout = () => {
           </div>
 
           <div className="flex gap-3 mb-7">
-            <img src="../images/Radio1.svg" alt="radio" className="mb-7" />       
+            <img src="../images/Radio1.svg" alt="radio" className="mb-7" />
             <div>
               <p className="flex items-center text-lg gap-3  mb-4">
                 Credit/Debit card
@@ -207,7 +219,7 @@ const Checkout = () => {
             />
           </div>
 
-          <button className=" px-[160px] py-[13px] bg-customMarsland text-center text-base text-customBlazeHaze">
+          <button className=" p-[13px] w-full bg-customMarsland text-center text-base text-customBlazeHaze">
             Make Payment
           </button>
         </div>

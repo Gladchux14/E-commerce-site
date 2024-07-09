@@ -3,6 +3,7 @@ import { CgCloseR } from "react-icons/cg";
 import { LuMinus } from "react-icons/lu";
 import { LuPlus } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import Counted from "./counted";
 
    const Cart = ({setIsNestedCartOpen}) => {
     const navigate = useNavigate();
@@ -12,9 +13,10 @@ import { useNavigate } from "react-router-dom";
         navigate('/checkout');
       };
 
+
   return (
      <div className="absolute  top-[7rem] right-0   bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-20">
-    <div className=" bg-customBlazeHaze px-14 py-3">
+    <div className=" bg-customBlazeHaze px-14 py-3 md:px-10">
       <div className="flex items-center justify-between mb-10 mt-2">
         <p className="font-medium text-4xl text-customMarsland"> Cart </p>
       
@@ -48,12 +50,13 @@ import { useNavigate } from "react-router-dom";
             <p className="font-bold text-base">$200</p>
           </div>
         </div>
-
-        <div className="border flex items-center justify-between text-center px-6 py-4 gap-4">
+          
+         <Counted/>
+        {/* <div className="border flex items-center justify-between text-center px-8 py-4 gap-4">
           <LuMinus />
           <p>1</p>
           <LuPlus />
-        </div>
+        </div> */}
       </div>
 
       <p className="underline mb-20 mt-8 text-[#525151]">Remove item</p>
@@ -73,7 +76,7 @@ import { useNavigate } from "react-router-dom";
         </div>
       </div>
 
-      <button onClick={handleCheckout} className="bg-customMarsland text-center text-customBlazeHaze px-[350px] py-[13px] text-lg font-bold mb-12">Check Out</button>
+      <button onClick={handleCheckout} className="bg-customMarsland text-center text-nowrap text-customBlazeHaze w-full py-[13px] text-lg font-bold mb-12 ">Check Out</button>
     </div>
     </div>
 );

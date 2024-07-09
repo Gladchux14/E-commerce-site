@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const Counter = () => {
+const Counter = ({details}) => {
   const [count, setCount] = useState(9);
   const total = 59;
 
   return (
-    <div className="p-14 flex flex-col items-center justify-center max-w-sm mx-auto text-center">
+    <div className={`p-14 flex flex-col items-center justify-center max-w-sm ${!details && "mx-auto"} text-center`}>
       <p className="text-xl font-normal text-[#525151]">{`${count} of ${total}`}</p>
       <button
         onClick={() => setCount(count + 1)}
