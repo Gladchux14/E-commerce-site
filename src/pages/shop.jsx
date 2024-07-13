@@ -2,8 +2,11 @@ import React from 'react'
 import { IoIosArrowDown } from "react-icons/io";
 import Products from '../components/products';
 import Counter from '../components/counter';
+import { useCart } from '../context/CartContext';
+import { useApp } from '../context/AppContext';
 
 const Shop = () => {
+ const { total}   = useApp()
   return (
     <div className='py-12  '>
         <div className='py-6 flex flex-col gap-5'>
@@ -12,7 +15,7 @@ const Shop = () => {
       </div>
 
       <div className='flex items-center justify-between'>
-        <p className='text-base font-700'>| <span className='font-400'>59 items</span></p>
+        <p className='text-base font-700'>| <span className='font-400'>{total} items</span></p>
        <div className='flex items-center justify-center'>
        <p className='flex items-center gap-2 font-500'>Category <IoIosArrowDown /> </p>
        <p className='flex items-center gap-2 font-500'>Sort by  <IoIosArrowDown /></p>
@@ -21,9 +24,7 @@ const Shop = () => {
             
        <Products/>
 
-       <div className=" flex items-center justify-center ">
-      <Counter />
-    </div>
+       
     {/* <div className='grid items-center justify-end p-8'>
       <p className='text-lg '>Showing 9 of 59</p>
       <button className='bg-customMarsland text-customPurity px-[13px] py-[119px] font-bold text-base items-center justify-center'>Show more</button>

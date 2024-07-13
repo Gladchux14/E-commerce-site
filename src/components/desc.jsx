@@ -11,7 +11,7 @@ const Desc = () => {
 //   relative
   return (
     <div className=" relative md:mb-5 mt-3">
-        <div className='flex items-center text-black justify-between'>
+        <div className='flex items-center text-black  justify-between'>
             <p>Description</p>
       <button onClick={toggleDropdown} className=" px-4 py-2 flex items-center justify-between">
       <span className={`flex-grow ml-2 transform ${isOpen ? 'rotate-90' : ''}`}> <IoIosArrowForward /> </span>

@@ -1,8 +1,44 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import logo from "../assets/images/logo.svg";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const Checkout = () => {
+  const {state, subtotal}   = useCart()
+  const {items}   = state
+
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      password: '',
+      address: '',
+      location: ''
+    });
+    
+    const [isDisabled, setIsDisabled] = useState(true);
+  
+    useEffect(() => {
+      // Check if any input is empty
+      const isAnyFieldEmpty = Object.values(formData).some(field => field === '');
+      setIsDisabled(isAnyFieldEmpty);
+    }, [formData]);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Handle form submission
+      console.log('Form submitted:', formData);
+    };
+  
+
+
   return (
     <div className="w-full">
       <Link to="/">
@@ -51,6 +87,8 @@ const Checkout = () => {
             <input
               type="text"
               placeholder="jDanet@gmail.com"
+              value={formData.name} 
+              onChange={handleChange} 
               className="w-[100%] py-3 mb-6"
             />
 
@@ -67,22 +105,30 @@ const Checkout = () => {
               <input
                 type="text"
                 placeholder="Janet"
+                value={formData.name} 
+                onChange={handleChange} 
                 className="w-[100%] py-3 mb-4"
               />
               <input
                 type="text"
                 placeholder="Doe"
+                value={formData.name} 
+                onChange={handleChange} 
                 className="w-[100%] py-3 mb-5"
               />
             </div>
             <input
               type="text"
               placeholder="2517 W.Gray St. Utica .Pennsylvania 57867"
+              value={formData.address} 
+              onChange={handleChange} 
               className="w-[100%] py-3 mb-5"
             />
             <input
               type="text"
               placeholder="Pembrooke pines"
+              value={formData.address} 
+              onChange={handleChange} 
               className="w-[100%] py-3 mb-5"
             />
 
@@ -90,6 +136,8 @@ const Checkout = () => {
               <select
                 name="location"
                 id="locations"
+                value={formData.location} 
+                onChange={handleChange} 
                 className="w-[100%] py-3 mb-5 text-[#828282]"
               >
                 <option value="" disabled selected>
@@ -110,11 +158,15 @@ const Checkout = () => {
               <input
                 type="number"
                 placeholder="42574"
+                value={formData.location} 
+                onChange={handleChange} 
                 className="w-[100%] py-3 mb-5"
               />
               <input
                 type="number"
                 placeholder="41748"
+                value={formData.location} 
+                onChange={handleChange} 
                 className="w-[100%] py-3 mb-5"
               />
             </div>
@@ -129,13 +181,13 @@ const Checkout = () => {
                 <p className="font-bold">Home delivery</p>
                 <p className="text-[#525151]">takes 3-5 business day</p>
               </div>
-              <div className="border border-solid p-4 w-[100%]  text-nowrap">
+              <div className="border border-solid p-4 w-[100%]  text-nowrap ">
                 <p className="font-bold">In-store pickup</p>
                 <p className="text-[#525151]">pick from store location</p>
               </div>
             </div>
 
-            <button className="bg-customMarsland text-customBlazeHaze text-base font-bold py-[10px] mt-10">
+            <button type="submit" disabled={isDisabled} className={`${isDisabled? "bg-[#aca7a7]": "bg-customMarsland" } text-customBlazeHaze text-base font-bold py-[10px] mt-10 cursor-pointer`}>
               Submit{" "}
             </button>
           </div>
@@ -147,31 +199,36 @@ const Checkout = () => {
           </p>
           <p className="underline ">Edit Cart</p>
 
-          <div className="flex mt-16 mb-14 gap-10">
-            <div>
-              <img
-                src="../images/bag1.png"
-                alt="cart-img"
-                className=" w-[180px] rounded"
-              />
-            </div>
-            <div className="flex flex-col gap-3">
-              <h2 className="font-medium pb-3  text-customMarsland text-[18px]">
-                Herschel Heritage Backpack |<br /> XL
-              </h2>
-              <p className="font-normal text-base text-[#525151]">
-                Color: Navy blue
-              </p>
-              <p className="font-normal text-base text-[#525151]">Qty: 1 </p>
-              <p className="font-bold text-2xl">$200</p>
-            </div>
-          </div>
-          <hr />
+          
 
+          {items.length > 0 ? (items.map(item =>(
+            <>
+               <div className="flex mt-16 mb-14 gap-10">
+               <div>
+                 <img
+                   src={item.image}
+                   alt="cart-img"
+                   className=" w-[180px] rounded"
+                 />
+               </div>
+               <div className="flex flex-col gap-3">
+                 <h2 className="font-medium pb-3  text-customMarsland text-[18px]">
+                   {item.name} |<br /> XL
+                 </h2>
+                 <p className="font-normal text-base text-[#525151]">
+                   Color: Navy blue
+                 </p>
+                 <p className="font-normal text-base text-[#525151]">Qty: {item.quantity} </p>
+                 <p className="font-bold text-2xl">${item.price}</p>
+               </div>
+             </div>
+             <hr />
+            </>
+            ) )):(<div>Cart is empty</div>)}
           <div className="mb-6 mt-8">
             <div className="flex items-center justify-between text-lg font-normal pb-2">
               <p>Subtotal:</p>
-              <p>$200</p>
+              <p>${subtotal}</p>
             </div>
             <div className="flex items-center justify-between text-lg font-normal p-2">
               <p>Tax:</p>
@@ -179,7 +236,7 @@ const Checkout = () => {
             </div>
             <div className="flex items-center justify-between text-lg font-bold p-2">
               <p>Total</p>
-              <p>$250</p>
+              <p>${subtotal +  5}</p>
             </div>
           </div>
           <hr />
@@ -227,5 +284,6 @@ const Checkout = () => {
     </div>
   );
 };
+
 
 export default Checkout;

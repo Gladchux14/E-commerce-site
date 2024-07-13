@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
-const Shoppingcard = ({ image, text, rating, price,length,index }) => {
+const Shoppingcard = ({id, image, text, rating, price,length,index }) => {
+
   return (
     <Link to ={`shop/${id}`}className={`p-2 ${length && index && length== index && "hidden"} lg:block`}>
       <div className=" rounded-lg overflow-hidden  items-center justify-center">
-        <img className="w-full h-50% object-cover object-center" src={image} alt={image} />
+        <img className="w-full h-50% object-cover object-center" src={`/api/images/${image}`} alt={image} />
         <div className="p-4 flex flex-col gap-[14px]">
           <h2 className="text-lg ">{text}</h2>
           <div className="flex items-center">
@@ -19,7 +20,7 @@ const Shoppingcard = ({ image, text, rating, price,length,index }) => {
             </span>
             <span className="text-gray-600 ml-2">{rating}</span>
           </div>
-          <span className="text-gray-800 font-bold text-lg">{price}</span>
+          <span className="text-gray-800 font-bold text-lg">${price}</span>
         </div>
       </div>
       <Outlet />

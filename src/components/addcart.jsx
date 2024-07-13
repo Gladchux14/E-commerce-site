@@ -3,9 +3,11 @@ import { CgCloseR } from "react-icons/cg";
 import Cart from './cart';
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const Addcart = ({ isOpen, toggleSidebar, toggleNestedCartDropdown }) => {
-
+  const {state}   = useCart()
+  const {items}   = state
   return (
     <>
       <div
@@ -27,30 +29,32 @@ const Addcart = ({ isOpen, toggleSidebar, toggleNestedCartDropdown }) => {
                 <CgCloseR />
               </button>
             </div>
-
-            <div className="flex items-center justify-center gap-6  mb-12">
-              <img
-                src="../images/bag1.png"
-                alt="cart-img"
-                className=" rounded w-[180px]"
-              />
-              <div className="flex flex-col gap-3">
-                <h2 className="font-medium text-customMarsland pb-3 text-[20px] leading-8">
-                  Herschel Heritage Backpack | <br /> XL
-                </h2>
-                <p className="font-normal text-base text-[#525151]">
-                  Color: Navy blue
-                </p>
-                <p className="font-normal text-base text-[#525151]">
-                  Size: Xl{" "}
-                </p>
-                <p className="font-bold text-base">$200</p>
+            {items.length > 0 ? (items.map(item =>(
+                <div className="flex items-center justify-center gap-6  mb-12">
+                <img
+                  src={item.image}
+                  alt="cart-img"
+                  className=" rounded w-[180px]"
+                />
+                <div className="flex flex-col gap-3">
+                  <h2 className="font-medium text-customMarsland pb-3 text-[20px] leading-8">
+                    {item.name} | <br /> XL
+                  </h2>
+                  <p className="font-normal text-base text-[#525151]">
+                    Color: Navy blue
+                  </p>
+                  <p className="font-normal text-base text-[#525151]">
+                    Size: Xl{" "}
+                  </p>
+                  <p className="font-bold text-base">${item.price}</p>
+                </div>
               </div>
-            </div>
+            ) )):(<div>Cart is empty</div>)}
+          
 
-            <button onClick={toggleNestedCartDropdown} className="px-[20px] py-[13px] w-full bg-customMarsland font-bold text-base text-center mb-6 text-customJana ">
+           {items.length>0 && <button onClick={toggleNestedCartDropdown} className="px-[20px] py-[13px] w-full bg-customMarsland font-bold text-base text-center mb-6 text-customJana ">
               View Cart
-            </button>
+            </button>}
             <p className="underline text-customMarsland text-center mb-6 text-base">
               Continue Shopping
             </p>

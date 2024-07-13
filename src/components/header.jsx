@@ -80,6 +80,7 @@ import logo from "../assets/images/logo.svg";
 import Addcart from "./addcart";
 import Cart from "./cart";
 import { FaSearch, FaUser, FaShoppingCart } from 'react-icons/fa';
+import { useCart } from "../context/CartContext";
 
 const Header = () => {
   const links = [
@@ -90,6 +91,8 @@ const Header = () => {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isNestedCartOpen, setIsNestedCartOpen] = useState(false);
+  const {state:cartItems}  = useCart()
+ 
 
   const toggleAddCartDropdown = () => {
     setIsCartOpen(!isCartOpen);
@@ -123,7 +126,7 @@ const Header = () => {
           <p>Search</p>
           <p>Account</p>
           <button onClick={toggleAddCartDropdown} className=" relative">
-            Cart 0
+            Cart {cartItems.items.length}
           </button>
           {isCartOpen && (
             <Addcart isOpen={isCartOpen} toggleSidebar={toggleAddCartDropdown} toggleNestedCartDropdown={toggleNestedCartDropdown} />
@@ -141,7 +144,7 @@ const Header = () => {
           </Link>
 
           <button onClick={toggleAddCartDropdown} className="text-2xl flex gap-2 items-center">
-           <span className="hidden">Cart</span><img src="../images/shopping-bag.svg" alt="img" /><span className="text-4xl">0</span>
+           <span className="hidden">Cart</span><img src="../images/shopping-bag.svg" alt="img" /><span className="text-4xl"> {cartItems.items.length}</span>
           </button>
           {isCartOpen && (
             <Addcart isOpen={isCartOpen} toggleSidebar={toggleAddCartDropdown} toggleNestedCartDropdown={toggleNestedCartDropdown} />

@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
+import { useCart } from '../context/CartContext';
 
-const Counted = () => {
-  const [count, setCount] = useState(0);
-
-  const increment = () => setCount(count + 1);
-  const decrement = () => setCount(count - 1);
+const Counted = ({quantity, id}) => {
+  const { increment, decrement } = useCart();
+  
 
   return (
     <div className="flex items-center border justify-center p-4">
       <button
-        onClick={decrement}
+        onClick={()=>decrement(id)}
         className=" text-black  px-4 py-2 rounded-l  focus:outline-none"
       >
         -
       </button>
-      <span className="px-4 py-2 ">{count}</span>
+      <span className="px-4 py-2 ">{quantity}</span>
       <button
-        onClick={increment}
+        onClick={()=>increment(id)}
         className=" text-black px-4 py-2 rounded-r  focus:outline-none"
       >
         +
