@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoIosStar } from "react-icons/io";
 import Desc from "./desc";
 import SizeDetails from "./SizeDetails";
@@ -6,49 +6,63 @@ import Counter from "./counter";
 import Reviews from "./reviews";
 import Shoppingcard from "./shoppingcard";
 import Addcart from "./addcart";
-
+import { useParams } from "react-router-dom";
+import AppContext from "../context/AppContext";
+import { shoppingItems } from "../../data";
+import Carousel from "./carousel";
 
 const Productdetails = () => {
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
+
+  const { id } = useParams;
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const shoppingItems = [
-    {
-      id: 1,
-      image: "/images/bag4.png",
-      text: "Herschel Heritage Backpack | XL",
-      rating: 4.5,
-      price: "$200",
-    },
-    {
-      id: 2,
-      image: "/images/bag5.png",
-      text: "Herschel Heritage Backpack | XL",
-      rating: 4.5,
-      price: "$200",
-    },
-    {
-      id: 3,
-      image: "/images/bag6.png",
-      text: "Herschel Heritage Backpack | XL",
-      rating: 4.5,
-      price: "$200",
-    },
-  ];
+  const { appState, setAppState } = useContext(AppContext);
+  const { bag, bags } = appState;
+
+  useEffect(() => {
+    const bag = shoppingItems.filter((item) => item.id === Number(id));
+    setAppState({ ...appState, bag: bag[0], bags: shoppingItems });
+  }, []);
+
+  // const shoppingItems = [
+  //   {
+  //     id: 1,
+  //     image: "/images/bag4.png",
+  //     text: "Herschel Heritage Backpack | XL",
+  //     rating: 4.5,
+  //     price: "$200",
+  //   },
+  //   {
+  //     id: 2,
+  //     image: "/images/bag5.png",
+  //     text: "Herschel Heritage Backpack | XL",
+  //     rating: 4.5,
+  //     price: "$200",
+  //   },
+  //   {
+  //     id: 3,
+  //     image: "/images/bag6.png",
+  //     text: "Herschel Heritage Backpack | XL",
+  //     rating: 4.5,
+  //     price: "$200",
+  //   },
+  // ];
 
   return (
     <div className="pt-8 relative">
       <div className="lg:grid lg:grid-cols-[60%_40%] flex flex-col">
+        {bag && (
+          <Carousel images={bag.images} currentIndex={[Number(id) - 1]} />
+        )}
         <div className="flex gap-2  flex-col md:flex-row">
           <div className="flex-grow ">
             <img src="/images/bag1.png" alt="bag-img" className="w-full" />
-          </div>ll
-
+          </div>
+          ll
           <div className="flex md:flex-col md:w-[95px] gap-2 flex-wrap flex-row mt-5 mb-40">
             <img src="/images/img1.png" alt="img" />
             <img src="/images/img2.svg" alt="img" />
@@ -78,7 +92,7 @@ const Productdetails = () => {
             <button className="p-[13px] w-full gap-[10] font-bold text-nowrap text-[#FFFF] bg-black">
               Add to Cart $200
             </button>
-           
+
             <button className="p-[13px] w-full border-[0.7] bg-white  text-nowrap  gap-[10]">
               Buy Now $200
             </button>
@@ -104,20 +118,25 @@ const Productdetails = () => {
       </div>
 
       <div className="mt-40">
-        <p className="font-medium text-[32px] pb-6 md:text-[24px]">Things you might like</p>
+        <p className="font-medium text-[32px] pb-6 md:text-[24px]">
+          Things you might like
+        </p>
         <div className="grid grid-cols-3">
-          {shoppingItems.map((item) => (
-            <Shoppingcard
-              key={item.id}
-              image={item.image}
-              text={item.text}
-              rating={item.rating}
-              price={item.price}
-            />
-          ))}
+          {bags &&
+            bags
+              .slice(0, 3)
+              .map((item, index) => (
+                <Shoppingcard
+                  key={item.id}
+                  image={item.images[index]}
+                  text={item.text}
+                  rating={item.rating}
+                  price={item.price}
+                />
+              ))}
         </div>
         <div className="flex items-center w-full justify-end">
-        <Counter details={true} />
+          <Counter details={true} />
         </div>
       </div>
       <Reviews />

@@ -20,6 +20,11 @@ const routes = [
             path: 'checkout',
             element: <Checkout/>,
           },
+          {
+            path: "shop",
+            element: <Outlet />,
+            children: [{ path: ":id", element: <Productdetails /> }],
+          },
       ],
     },
   ];
