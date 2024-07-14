@@ -1,19 +1,23 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { IoIosStar } from "react-icons/io";
 import Desc from "./desc";
 import SizeDetails from "./SizeDetails";
 import Counter from "./counter";
 import Reviews from "./reviews";
 import Shoppingcard from "./shoppingcard";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Carousel from "./carousel";
 import { useQuery } from "@tanstack/react-query";
-import  { useCart } from "../context/CartContext";
-import { APIIMAGEURL, APIKEY, APIURLPRODUCT, APIURLPRODUCTS, APPID, ORGID } from "../constants";
+import { useCart } from "../context/CartContext";
+import {
+  APIIMAGEURL,
+  APIKEY,
+  APIURLPRODUCT,
+  APIURLPRODUCTS,
+  APPID,
+  ORGID,
+} from "../constants";
 import { fetchProduct, fetchProducts } from "../helpers";
-
-
-
 
 const Productdetails = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,22 +26,25 @@ const Productdetails = () => {
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(3);
   const { data: product, isLoading } = useQuery({
-    queryKey: ["product", id, APIURLPRODUCT,  ORGID, APPID, APIKEY],
+    queryKey: ["product", id, APIURLPRODUCT, ORGID, APPID, APIKEY],
     queryFn: fetchProduct,
   });
-  
+
   const { data: products, isLoading: isProductsLoading } = useQuery({
-    queryKey: ["products",APIURLPRODUCTS, ORGID,  APPID, APIKEY, page, size],
+    queryKey: ["products", APIURLPRODUCTS, ORGID, APPID, APIKEY, page, size],
     queryFn: fetchProducts,
   });
-  const {state:cartItems, addToCart}   = useCart()
+  const { state: cartItems, addToCart } = useCart();
+  const navigate = useNavigate();
 
+  const handleViewMore = () => {
+    navigate("/");
+  };
   if (isLoading) return <div>Loading....</div>;
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
 
   return (
     <div className="pt-8 relative">
@@ -64,12 +71,19 @@ const Productdetails = () => {
             </p>
 
             <div className="flex gap-4  mb-8">
-              <button className="p-[13px] w-full gap-[10] font-bold text-nowrap text-[#FFFF] bg-black" onClick={() => addToCart({
-                name: product.name,
-                price: product.current_price ? product.current_price[0].LRD[0] : 200,
-                image: `${APIIMAGEURL}/images/${product.photos[0].url}`,
-                id: product.id,
-              })}>
+              <button
+                className="p-[13px] w-full gap-[10] font-bold text-nowrap text-[#FFFF] bg-black"
+                onClick={() =>
+                  addToCart({
+                    name: product.name,
+                    price: product.current_price
+                      ? product.current_price[0].LRD[0]
+                      : 200,
+                    image: `${APIIMAGEURL}/images/${product.photos[0].url}`,
+                    id: product.id,
+                  })
+                }
+              >
                 Add to Cart $
                 {product.current_price ? product.current_price[0].LRD[0] : 200}
               </button>
@@ -138,7 +152,7 @@ const Productdetails = () => {
               ))} */}
         </div>
         <div className="flex items-center w-full justify-end">
-          <Counter details={true} />
+          <Counter count={10} total={30} details={true} handleViewMore={handleViewMore} />
         </div>
       </div>
       <Reviews />

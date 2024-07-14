@@ -19,7 +19,7 @@ const SizeDetails = () => {
       </button>
       </div>
       {isOpen && (
-        <ol className="absolute grid  mt-2 w-48 p-2 rounded text-nowrap gap-3 text-[#525151]">
+        <ol className="grid  mt-2 w-48 p-2 rounded text-nowrap gap-3 text-[#525151]">
           <li className="block ">Dimension: 6.75"(H) x 2.00"(W)</li>
           <li className="block ">Ecosystem™ Liner made from 100% recycled post-consumer water bottles</li>
           <li className="block ">Tonal stripe Ecosystem™ Liner made from 100%  recycled post-consumer </li>

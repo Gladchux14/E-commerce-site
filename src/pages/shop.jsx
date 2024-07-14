@@ -17,8 +17,8 @@ const Shop = () => {
       <div className='flex items-center justify-between'>
         <p className='text-base font-700'>| <span className='font-400'>{total} items</span></p>
        <div className='flex items-center justify-center'>
-       <p className='flex items-center gap-2 font-500'>Category <IoIosArrowDown /> </p>
-       <p className='flex items-center gap-2 font-500'>Sort by  <IoIosArrowDown /></p>
+       {/* <p className='flex items-center gap-2 font-500'>Category <IoIosArrowDown /> </p>
+       <p className='flex items-center gap-2 font-500'>Sort by  <IoIosArrowDown /></p> */}
        </div>
       </div>
             

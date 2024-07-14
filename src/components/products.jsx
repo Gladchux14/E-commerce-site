@@ -8,12 +8,14 @@ import { fetchProducts } from "../helpers";
 
 
 
+
 const Products = () => {
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
   const [allProducts, setAllProducts] = useState([]);
   const {total, setTotal}  = useApp()
   const [count, setcount]    = useState(10)
+
 
   const { data:products, isLoading, isError } = useQuery({
     queryKey: ["products",APIURLPRODUCTS, ORGID, APPID, APIKEY, page, size],
@@ -31,7 +33,11 @@ const Products = () => {
     }
   }, [products]);
 
-  const handleViewMore = () => {
+  const handleViewMore = (details) => {
+    if (details){
+      navigate("/")
+      return
+    }
     setPage((prevPage) => prevPage + 1);
     setcount(count + products.items.length)
   };

@@ -18,7 +18,7 @@ const Desc = () => {
       </button>
         </div>
       {isOpen && (
-        <ul className="absolute w-48 grid rounded mt-8 text-nowrap gap-3 text-[#525151]">
+        <ul className=" w-48 grid rounded mt-8 text-nowrap gap-3 text-[#525151]">
           <li><a href="#" className="block  ">Size and Detail</a></li>
           <li><a href="#" className="block  "> Stay Hydrated With Herschel Drinkware</a></li>
           <li><a href="#" className="block  ">Water Bottle Insulated 19oz/530ml</a></li>
