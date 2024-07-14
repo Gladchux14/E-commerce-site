@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { APIIMAGEURL } from '../constants';
+
 
 const Shoppingcard = ({id, image, text, rating, price,length,index }) => {
 
   return (
     <Link to ={`shop/${id}`}className={`p-2 ${length && index && length== index && "hidden"} lg:block`}>
       <div className=" rounded-lg overflow-hidden  items-center justify-center">
-        <img className="w-full h-50% object-cover object-center" src={`/api/images/${image}`} alt={image} />
+        <img className="w-full h-50% object-cover object-center" src={`${APIIMAGEURL}/images/${image}`} alt={image} />
         <div className="p-4 flex flex-col gap-[14px]">
           <h2 className="text-lg ">{text}</h2>
           <div className="flex items-center">

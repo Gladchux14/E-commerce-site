@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { APIIMAGEURL } from '../constants';
 
 const Carousel = ({images}) => {
     const [active, setActive] = useState (0);
@@ -10,24 +11,26 @@ const Carousel = ({images}) => {
 
 
   return (
-    <div className='flex gap-2  flex-col md:flex-row'>
-        <div className="flex-grow ">
-        <img src={`/api/images/${images[active].url}`} alt="bag-img" className="w-full" />
+    <div className='flex gap-2 flex-col md:flex-row'>
+        <div className="flex-grow w-full ">
+        <img src={`${APIIMAGEURL}/images/${images[active].url}`} alt="bag-img" className="w-full" />
       </div>
 
-      <div className="flex md:flex-col w-[95px] gap-2 flex-wrap ">
+      <div className="flex md:flex-col h-[10%] md:w-[20%] items-center md:items-start gap-2 ">
         {images && images.map((photo,index) => {
-          return <div>
-            <img
-            key={photo.filename}
-            src={`api/images/${photo.url}`}
-            className={`${index === active ? "active" : ""}`}
-            alt="bag thumbnail"
-            onClick={handleIndexClick}
-            data-index={index}
-          />
-          </div>
+         return <div  key={photo.url} className=' h-full flex-grow  basis-1 flex-shrink md:w-[95px] md:h-[95px] '>
+         <img
+        
+         src={`${APIIMAGEURL}/images/${photo.url}`}
+         className={`h-full w-full ${index === active ? "active" : ""}`}
+         alt="bag thumbnail"
+         onClick={handleIndexClick}
+         data-index={index}
+       />
+       </div>
 })}
+
+
       </div> 
     </div>
   )
